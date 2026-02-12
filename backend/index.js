@@ -1,0 +1,31 @@
+// const { configDotenv } = require("dotenv");
+// configDotenv();
+// import express from "express";
+const express = require("express");
+const connectDB = require("./config/database");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+// Import routes
+const userRoute = require("./routes/userRoutes");
+const messageRoute = require("./routes/messageRoutes");
+require("dotenv").config();
+const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: "http://localhost:5173", // React/Vite port
+    credentials: true,
+  }),
+);
+
+app.use("/api/users", userRoute);
+app.use("/api/messages", messageRoute);
+const PORT = process.env.PORT || 5000;
+
+connectDB();
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
