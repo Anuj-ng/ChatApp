@@ -18,15 +18,15 @@ import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import MessageContainer from "./MessageContainer";
 
-const ChatLayout = () => {
+const Homepage = () => {
   const [showChat, setShowChat] = useState(false);
 
   return (
     <div className={`chat-layout ${showChat ? "show-chat" : ""}`}>
       <Sidebar openChat={() => setShowChat(true)} />
-      <MessageContainer goBack={() => setShowChat(false)} />
+      <MessageContainer  goBack={() => setShowChat(false)} />
     </div>
   );
 };
 
-export default ChatLayout;
+export default Homepage;

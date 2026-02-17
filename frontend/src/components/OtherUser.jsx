@@ -3,10 +3,10 @@ import { setSelectedUser } from "../redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const OtherUser = ({ user, openChat }) => {
-  
   const dispatch = useDispatch();
-  const { selectedUser } = useSelector((store) => store.user);
-  const isActive =selectedUser?._id === user?._id;
+  const { selectedUser, onlineUsers } = useSelector((store) => store.user);
+  const isOnline = onlineUsers?.includes(user?._id);
+  const isActive = selectedUser?._id === user?._id;
   const selectedUserHandler = (user) => {
     dispatch(setSelectedUser(user));
   };
@@ -22,7 +22,7 @@ const OtherUser = ({ user, openChat }) => {
       <div className="chat-user-left">
         <div className="avatar-wrapper">
           <img src={user?.profilePhoto} alt="profile" className="chat-avatar" />
-          <span className="online-dot"></span>
+          {isOnline && <span className="online-dot"></span>}
         </div>
       </div>
 

@@ -5,11 +5,11 @@ const express = require("express");
 const connectDB = require("./config/database");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const {server,app}=require("./socket/socket.js")
 // Import routes
 const userRoute = require("./routes/userRoutes");
 const messageRoute = require("./routes/messageRoutes");
 require("dotenv").config();
-const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -26,6 +26,6 @@ app.use("/api/messages", messageRoute);
 const PORT = process.env.PORT || 5000;
 
 connectDB();
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
