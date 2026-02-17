@@ -5,7 +5,7 @@ const express = require("express");
 const connectDB = require("./config/database");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const {server,app}=require("./socket/socket.js")
+const { server, app } = require("./socket/socket.js");
 // Import routes
 const userRoute = require("./routes/userRoutes");
 const messageRoute = require("./routes/messageRoutes");
@@ -16,7 +16,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173", // React/Vite port
+    origin: "https://chat-app-self-kappa-74.vercel.app",
+
     credentials: true,
   }),
 );
