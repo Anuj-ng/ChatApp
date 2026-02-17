@@ -16,7 +16,7 @@ const SendInput = () => {
       if (!message.trim()) return;
 
       const res = await axios.post(
-        `http://localhost:8080/api/messages/send/${selectedUser?._id}`,
+        `https://chat-backend-7eml.onrender.com/api/messages/send/${selectedUser?._id}`,
         { message },
         {
           headers: {

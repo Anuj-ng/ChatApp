@@ -112,17 +112,17 @@
 import React, { useRef, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import OtherUsers from "./OtherUsers";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import gsap from "gsap";
-import {setAuthUser,setOtherUsers} from "../redux/userSlice"
+import { setAuthUser, setOtherUsers } from "../redux/userSlice";
 
 const Sidebar = ({ openChat }) => {
   const lastSpawn = useRef(0);
   const navigate = useNavigate();
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
 
   const { otherUsers } = useSelector((store) => store.user);
   const [search, setSearch] = useState("");
@@ -153,7 +153,7 @@ const Sidebar = ({ openChat }) => {
           opacity: 1,
           duration: 1.2 + Math.random(),
           ease: "power1.out",
-        }
+        },
       );
     }
   };
@@ -162,15 +162,17 @@ const Sidebar = ({ openChat }) => {
   const filteredUsers = otherUsers?.filter((user) =>
     `${user.fullName} ${user.username}`
       .toLowerCase()
-      .includes(search.toLowerCase())
+      .includes(search.toLowerCase()),
   );
 
   const logOutHandler = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/users/logout");
+      const res = await axios.get(
+        "https://chat-backend-7eml.onrender.com/api/users/logout",
+      );
       navigate("/login");
       toast.success(res.data.message);
-      dispatch(setAuthUser(null))
+      dispatch(setAuthUser(null));
     } catch (error) {
       console.log(error);
     }
@@ -201,9 +203,7 @@ const Sidebar = ({ openChat }) => {
 
           {/* Optional UX message */}
           {filteredUsers?.length === 0 && (
-            <p className="text-center text-gray-400 mt-4">
-              No users found
-            </p>
+            <p className="text-center text-gray-400 mt-4">No users found</p>
           )}
         </div>
 

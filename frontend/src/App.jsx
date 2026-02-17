@@ -49,8 +49,6 @@
 
 // export default App;
 
-
-
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import io from "socket.io-client";
@@ -75,7 +73,7 @@ const App = () => {
       return;
     }
 
-    const newSocket = io("http://localhost:8080", {
+    const newSocket = io("https://chat-backend-7eml.onrender.com", {
       query: { userId: authUser._id },
     });
 

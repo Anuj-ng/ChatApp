@@ -21,7 +21,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/users/login",
+        "https://chat-backend-7eml.onrender.com/api/users/login",
         user,
         {
           headers: {
