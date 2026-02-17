@@ -2,6 +2,7 @@
 // configDotenv();
 // import express from "express";
 const express = require("express");
+
 const connectDB = require("./config/database");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -11,6 +12,7 @@ const userRoute = require("./routes/userRoutes");
 const messageRoute = require("./routes/messageRoutes");
 require("dotenv").config();
 
+// app.set("trust proxy", 1); // ⭐ REQUIRED for Render cookies
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
