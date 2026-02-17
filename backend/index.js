@@ -12,7 +12,7 @@ const userRoute = require("./routes/userRoutes");
 const messageRoute = require("./routes/messageRoutes");
 require("dotenv").config();
 
-// app.set("trust proxy", 1); // ⭐ REQUIRED for Render cookies
+app.set("trust proxy", 1); // ⭐ REQUIRED for Render cookies
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());

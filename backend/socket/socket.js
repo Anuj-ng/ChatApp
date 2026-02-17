@@ -3,7 +3,7 @@ const http = require("http");
 const express = require("express");
 
 const app = express();
-app.set("trust proxy", 1); // ⭐ REQUIRED for Render cookies
+// app.set("trust proxy", 1); // ⭐ REQUIRED for Render cookies
 
 const server = http.createServer(app);
 const io = new Server(server, {
