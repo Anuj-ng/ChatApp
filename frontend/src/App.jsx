@@ -93,9 +93,21 @@ const App = () => {
     <div className="App p-4 h-screen flex items-center justify-center">
       <Router>
         <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Signup />} />
+               <Route
+          path="/"
+          element={authUser ? <Homepage /> : <Navigate to="/login" />}
+        />
+
+        {/* If already logged in → go to homepage */}
+        <Route
+          path="/login"
+          element={!authUser ? <Login /> : <Navigate to="/login" />}
+        />
+
+        <Route
+          path="/register"
+          element={!authUser ? <Signup /> : <Navigate to="/signup" />}
+        />
         </Routes>
       </Router>
     </div>
