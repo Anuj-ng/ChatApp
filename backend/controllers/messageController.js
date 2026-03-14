@@ -46,9 +46,11 @@ const getMessage = async (req, res) => {
       participants: { $all: [senderId, receiverId] },
     }).populate("messages");
     if (!conversation) {
-      return res.status(200).json({ message: [] });
+      return res.status(200).json({ messages: [] });
     }
-    res.status(200).json(conversation);
+    res.status(200).json({ messages: conversation.messages }); // ✅ consistent shape
+
+    // res.status(200).json(conversation);
   } catch (error) {
     console.error("Error in getMessage:", error);
     res

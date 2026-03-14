@@ -8,8 +8,11 @@ const useGetRealTimeMessage = () => {
   const { messages } = useSelector((store) => store.message);
   useEffect(() => {
     socket?.on("newMessage", (newMessage) => {
-      dispatch(setMessages([...messages, newMessage]));
-    });
+  dispatch(setMessages([...(messages || []), newMessage])); // ✅ fallback to []
+});
+    // socket?.on("newMessage", (newMessage) => {
+    //   dispatch(setMessages([...messages, newMessage]));
+    // });
     //     return () => socket?.off("newMessage");
   }, [setMessages, messages]);
 };

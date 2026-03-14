@@ -28,7 +28,8 @@ const SendInput = () => {
 
       setMessage("");
       // console.log(res);
-      dispatch(setMessages([...messages, res?.data?.newMessage]));
+      // dispatch(setMessages([...messages, res?.data?.newMessage]));
+      dispatch(setMessages([...(messages || []), res?.data?.newMessage])); //claude told
     } catch (error) {
       console.log(error);
     }
