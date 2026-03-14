@@ -168,11 +168,12 @@ const Sidebar = ({ openChat }) => {
   const logOutHandler = async () => {
     try {
       const res = await axios.get(
-        "https://chat-backend-7eml.onrender.com/api/users/logout",
+        "https://chat-backend-7eml.onrender.com/api/users/logout",  { withCredentials: true }, 
       );
       navigate("/login");
       toast.success(res.data.message);
       dispatch(setAuthUser(null));
+      dispatch(setOtherUsers([]));
     } catch (error) {
       console.log(error);
     }

@@ -92,13 +92,12 @@ const App = () => {
   return (
     <div className="App p-4 h-screen flex items-center justify-center">
       <Router>
-        <Routes>
+        {/* <Routes>
                <Route
           path="/"
           element={authUser ? <Homepage /> : <Navigate to="/login" />}
         />
 
-        {/* If already logged in → go to homepage */}
         <Route
           path="/login"
           element={!authUser ? <Login /> : <Navigate to="/login" />}
@@ -108,7 +107,12 @@ const App = () => {
           path="/register"
           element={!authUser ? <Signup /> : <Navigate to="/signup" />}
         />
-        </Routes>
+        </Routes> */}
+        <Routes>
+  <Route path="/"        element={authUser ? <Homepage /> : <Navigate to="/login" />} />
+  <Route path="/login"   element={!authUser ? <Login />   : <Navigate to="/" />} />
+  <Route path="/register" element={!authUser ? <Signup /> : <Navigate to="/" />} />
+</Routes>
       </Router>
     </div>
   );
