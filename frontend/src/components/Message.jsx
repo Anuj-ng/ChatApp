@@ -37,12 +37,16 @@ const Message = ({ message }) => {
   };
 
   return (
-    <div ref={scroll} className={`chat ${authUser?._id===message?.senderId? 'chat-end':'chat-start'}`}>
+    // <div ref={scroll} className={`chat ${authUser?._id===message?.senderId?'chat-end':'chat-start'}`}>
+    <div ref={scroll} className={`chat ${authUser?._id?.toString() === message?.senderId?.toString() ? 'chat-end' : 'chat-start'}`}>
+
       <div className="chat-image avatar ">
         <div className="w-10 rounded-full">
           <img
             alt="Tailwind CSS chat bubble component"
-            src={message?.senderId===authUser?._id?authUser?.profilePhoto:selectedUser?.profilePhoto}
+            // src={message?.senderId===authUser?._id?authUser?.profilePhoto:selectedUser?.profilePhoto}
+            src={message?.senderId?.toString() === authUser?._id?.toString() ? authUser?.profilePhoto : selectedUser?.profilePhoto}
+
           />
         </div>
       </div>
