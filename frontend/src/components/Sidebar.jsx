@@ -174,6 +174,7 @@ const Sidebar = ({ openChat }) => {
       toast.success(res.data.message);
       dispatch(setAuthUser(null));
       dispatch(setOtherUsers([]));
+       await persistor.purge(); 
     } catch (error) {
       console.log(error);
     }

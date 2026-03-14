@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userSlice";
 import messageReducer from "./messageSlice";
 import socketReducer from "./socketSlice";
-
+import { persistor } from "../redux/store"; // 👈 add this
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "./localStorage"; // ⭐ our custom adapter
 
