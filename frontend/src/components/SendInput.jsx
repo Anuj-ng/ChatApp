@@ -12,7 +12,6 @@ const SendInput = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-      
       if (!message.trim()) return;
 
       const res = await axios.post(
@@ -29,7 +28,7 @@ const SendInput = () => {
       setMessage("");
       // console.log(res);
       // dispatch(setMessages([...messages, res?.data?.newMessage]));
-      dispatch(setMessages([...(messages || []), res?.data?.newMessage])); //claude told
+      dispatch(setMessages([...(messages ?? []), res?.data?.newMessage]));
     } catch (error) {
       console.log(error);
     }

@@ -16,8 +16,7 @@ const useGetMessages = () => {
         const res = await axios.get(
           `https://chat-backend-7eml.onrender.com/api/messages/${selectedUser?._id}`,
         );
-        dispatch(setMessages(res.data.messages));
-        // console.log(res);
+dispatch(setMessages(res.data.messages ?? [])); // ✅ fallback to empty array        // console.log(res);
       } catch (error) {
         console.log(error);
       }

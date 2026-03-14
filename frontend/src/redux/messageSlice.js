@@ -6,9 +6,9 @@ const messageSlice = createSlice({
     messages: [],
   },
   reducers: {
-    setMessages: (state, action) => {
-      state.messages = action.payload;
-    },
+  setMessages: (state, action) => {
+  state.messages = action.payload ?? []; // ✅ never let it become undefined
+},
     clearMessages: (state) => {
       state.messages = [];
     },
