@@ -32,6 +32,7 @@ const Login = () => {
       );
       navigate("/");
       dispatch(setAuthUser(res.data.user));
+      dispatch(setSelectedUser(null));
     } catch (err) {
       const message =
         err?.response?.data?.message || // backend error

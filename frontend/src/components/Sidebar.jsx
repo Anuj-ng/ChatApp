@@ -118,6 +118,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import gsap from "gsap";
 import { setAuthUser, setOtherUsers } from "../redux/userSlice";
+import { persistor } from "../redux/store";
 
 const Sidebar = ({ openChat }) => {
   const lastSpawn = useRef(0);
@@ -170,11 +171,12 @@ const Sidebar = ({ openChat }) => {
       const res = await axios.get(
         "https://chat-backend-7eml.onrender.com/api/users/logout",  { withCredentials: true }, 
       );
-      navigate("/login");
-      toast.success(res.data.message);
       dispatch(setAuthUser(null));
       dispatch(setOtherUsers([]));
-       await persistor.purge(); 
+      dispatch(setSelectedUser(null)); 
+      await persistor.purge(); 
+      navigate("/login");
+      toast.success(res.data.message);
     } catch (error) {
       console.log(error);
     }
