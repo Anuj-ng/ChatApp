@@ -1,6 +1,7 @@
 // const { configDotenv } = require("dotenv");
 // configDotenv();
 // import express from "express";
+require("dotenv").config();
 const express = require("express");
 
 const connectDB = require("./config/database");
@@ -10,7 +11,6 @@ const { server, app } = require("./socket/socket.js");
 // Import routes
 const userRoute = require("./routes/userRoutes");
 const messageRoute = require("./routes/messageRoutes");
-require("dotenv").config();
 
 app.set("trust proxy", 1); // ⭐ REQUIRED for Render cookies
 app.use(express.urlencoded({ extended: true }));
