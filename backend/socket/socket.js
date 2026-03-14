@@ -8,12 +8,17 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["https://chat-app-self-kappa-74.vercel.app", "http://localhost:5173"],
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (origin.endsWith(".vercel.app") || origin === "http://localhost:5173") {
+        return callback(null, true);
+      }
+      return callback(new Error("Not allowed by CORS"));
+    },
     methods: ["GET", "POST"],
-    credentials: true, // ✅ add this
+    credentials: true,
   },
 });
-
 const userSocketMap = {};
 const getReceiverSocketId = (receiverId) => {
   return userSocketMap[receiverId];

@@ -17,9 +17,22 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: ["https://chat-app-self-kappa-74.vercel.app", "http://localhost:5173"],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // ✅ add OPTIONS
+  origin: function (origin, callback) {
+    // Allow requests with no origin (mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+    
+    // Allow any vercel.app subdomain + localhost
+    if (
+      origin.endsWith(".vercel.app") ||
+      origin === "http://localhost:5173"
+    ) {
+      return callback(null, true);
+    }
+    
+    return callback(new Error("Not allowed by CORS"));
+  },
   credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 }));
 
 app.use("/api/users", userRoute);
