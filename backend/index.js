@@ -16,13 +16,11 @@ app.set("trust proxy", 1); // ⭐ REQUIRED for Render cookies
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: "https://chat-app-self-kappa-74.vercel.app",
-
-    credentials: true,
-  }),
-);
+app.use(cors({
+  origin: ["https://chat-app-self-kappa-74.vercel.app", "http://localhost:5173"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // ✅ add OPTIONS
+  credentials: true,
+}));
 
 app.use("/api/users", userRoute);
 app.use("/api/messages", messageRoute);

@@ -63,7 +63,8 @@ const loginUser = async (req, res) => {
       .cookie("token", token, {
         maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
-        sameSite: "strict",
+        sameSite: "none",
+        secure:true,
       })
       .json({
         message: "Login successful",
@@ -84,7 +85,7 @@ const logoutUser = (req, res) => {
   try {
     return res
       .status(200)
-      .clearCookie("token", { httpOnly: true, sameSite: "strict" })
+      .clearCookie("token", { httpOnly: true, sameSite: "none" })
       .json({ message: "Logout successful" });
   } catch (error) {
     console.error("Error in logoutUser:", error);
